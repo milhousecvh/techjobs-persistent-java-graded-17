@@ -4,15 +4,23 @@ package org.launchcode.techjobs.persistent.models;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.util.Objects;
 
-public abstract class AbstractEntity {
 
+
+@MappedSuperclass
+public abstract class AbstractEntity {
+    @Id
+    @GeneratedValue
     private int id;
 
+    @Valid
+    @NotNull (message = "field is required")
+    @Size (max = 100)
     private String name;
 
     public int getId() {
