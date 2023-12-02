@@ -24,6 +24,7 @@ public class EmployerController implements CrudRepository {
 
     @GetMapping("/")
     public String index(Model model) {
+        model.addAttribute("title", "All Employers");
         employerRepository.findAll();
         model.addAttribute(new Employer());
         return "employers/index";
@@ -40,10 +41,9 @@ public class EmployerController implements CrudRepository {
     public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer,
                                     Errors errors, Model model) {
         if (errors.hasErrors()) {
-            model.addAttribute("employer", "New Employer");
+            model.addAttribute("title", "Add Employer");
             return "employers/add";
         }
-
         employerRepository.save(newEmployer);
         return "redirect";
     }
