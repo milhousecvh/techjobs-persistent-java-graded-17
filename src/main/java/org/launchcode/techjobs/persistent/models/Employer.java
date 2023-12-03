@@ -10,7 +10,6 @@ import java.util.List;
 @Entity
 public class Employer extends AbstractEntity {
 
-    @ManyToOne
     @NotBlank
     @Size(max = 50, message = "Location must be under 50 characters")
     private String location;
