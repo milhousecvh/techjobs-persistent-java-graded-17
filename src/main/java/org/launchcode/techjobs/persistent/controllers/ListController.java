@@ -45,10 +45,10 @@ public class ListController {
 
     @RequestMapping("")
     public String list(Model model) {
-        List employers = (List<Employer>) employerRepository.findAll();
-        model.addAttribute("employer", employers);
+        List<Employer> employers = (List<Employer>) employerRepository.findAll();
+        model.addAttribute("employers", employers);
 
-        List skills = (List<Skill>) skillRepository.findAll();
+        List<Skill> skills = (List<Skill>) skillRepository.findAll();
         model.addAttribute("skills", skills);
 
         return "list";
@@ -59,7 +59,7 @@ public class ListController {
         Iterable<Job> jobs;
         if (column.toLowerCase().equals("all")){
             jobs = jobRepository.findAll();
-            model.addAttribute("jobs", jobs);
+//            model.addAttribute("jobs", jobs);
             model.addAttribute("title", "All Jobs");
         } else {
             jobs = JobData.findByColumnAndValue(column, value, jobRepository.findAll());
